@@ -1,4 +1,4 @@
-def process_response(res)
+def process_response(res, remove_outer_key = true)
   if res.key? :exception_id
     response = res
   elsif res && res.dig(:__for_test__)
@@ -12,9 +12,11 @@ def process_response(res)
     response = custom_body.nil? ? res : res.merge(custom_body)
   elsif block_given?
     response = yield res
-  else
+  elsif remove_outer_key
     topLevelKey = res.keys.first
     response = res[topLevelKey].as_json
+  else
+    response = res
   end
 
   response

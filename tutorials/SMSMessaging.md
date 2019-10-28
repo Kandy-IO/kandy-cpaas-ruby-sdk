@@ -6,6 +6,7 @@ Let's assume that you want to send SMS to +16131234567 using +16139998877 as sen
 
 ```ruby
 Cpaas::Conversation.create_message({
+  type: Cpaas::Conversation.types[:SMS],
   destination_address: '+16131234567',
   sender_address: '+16139998877',
   message: 'hi :)'
@@ -54,6 +55,7 @@ You subscribe to receive inbound SMS:
 
 ```ruby
 Cpaas::Conversation.subscribe({
+  type: Cpaas::Conversation.types[:SMS],
   webhook_url: 'https://myapp.com/inbound-sms/webhook',
   destination_address: '+16139998877'
 })

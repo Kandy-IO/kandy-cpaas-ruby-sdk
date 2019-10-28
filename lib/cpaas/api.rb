@@ -99,7 +99,7 @@ module Cpaas
 
       response = send_request('/cpaas/auth/v1/token', options, :post , false)
 
-      process_response(response)
+      process_response(response, false)
     end
 
     def token_expired
