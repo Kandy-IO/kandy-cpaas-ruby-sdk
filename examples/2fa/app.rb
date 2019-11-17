@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'pry'
-require 'cpaas'
+require 'cpaas-sdk'
 
 require './helper'
 
@@ -51,19 +51,19 @@ class App < Sinatra::Application
         message: 'Your verification code: {code}'
         })
 
-        if response[:exception_id]
-          # Here something went wrong either with the server or proper parameters were not passed.
-          # Received error message is echoed back to the UI as error alert.
-          return erb :login, layout: :index, locals: { alert: { message: error_message(response), type: 'error' } }
-        end
+      if response[:exception_id]
+        # Here something went wrong either with the server or proper parameters were not passed.
+        # Received error message is echoed back to the UI as error alert.
+        return erb :login, layout: :index, locals: { alert: { message: error_message(response), type: 'error' } }
+      end
 
-        session[:code_id] = response[:code_id]
-        set_credentials_verified(session)
+      session[:code_id] = response[:code_id]
+      set_credentials_verified(session)
 
-        redirect '/verify'
-      else
-        # If login credentials do not match with credentials present in .env, login page is re-rendered with error alert
-        erb :login, layout: :index, locals: { alert: { message: 'Invalid username or password', type: 'error' } }
+      redirect '/verify'
+    else
+      # If login credentials do not match with credentials present in .env, login page is re-rendered with error alert
+      erb :login, layout: :index, locals: { alert: { message: 'Invalid username or password', type: 'error' } }
     end
   end
 

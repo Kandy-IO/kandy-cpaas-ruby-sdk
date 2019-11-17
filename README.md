@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'cpaas-ruby'
+gem 'cpaas-sdk'
 ```
 
 And then execute:

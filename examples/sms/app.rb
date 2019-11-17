@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'pry'
-require 'cpaas'
+require 'cpaas-sdk'
 
 require './helper'
 
@@ -30,7 +30,6 @@ class App < Sinatra::Application
     #
     # The method create_message would send an sms when the 'type' attribute is 'SMS'
     #
-
     response = Cpaas::Conversation.create_message({
       type: Cpaas::Conversation.types[:SMS],
       destination_address: params['number'],

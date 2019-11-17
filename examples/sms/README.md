@@ -3,7 +3,7 @@
 This is a simple sms application where a user can send an sms, subscribe sms notification and receive real-time sms events (inbound, outbound etc notification).
 
 ## Installation
-1. Copy `example.env` and rename to `.env` and add the appropriate values. Check `Configuration` section for more details.
+1. Copy `.env.example` and rename to `.env` and add the appropriate values. Check `Configuration` section for more details.
 2. To install dependencies, run:
 ```bash
 bundle install

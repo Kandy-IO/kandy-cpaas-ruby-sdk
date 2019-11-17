@@ -3,7 +3,7 @@
 This is an elementary  login authentication use case of two-factor authentication via SMS. The main focus of this application is to understand and implement the 2FA flow, so least amount of stress is given to the authentication/login mechanism.
 
 ## Installation
-1. Copy `example.env` and rename to `.env` and add the appropriate values. Check `Configuration` section for more details.
+1. Copy `.env.example` and rename to `.env` and add the appropriate values. Check `Configuration` section for more details.
 2. To install dependencies, run:
 ```bash
 bundle install
