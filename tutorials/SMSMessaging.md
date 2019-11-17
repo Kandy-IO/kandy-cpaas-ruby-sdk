@@ -68,6 +68,7 @@ A successful subscription would return:
 {
   webhook_url: 'https://myapp.com/inbound-sms/webhook',
   destination_address: '+16139998877'
+  subscription_id: '544f12a3-123ad5e-b169'
 }
 ```
 

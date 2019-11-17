@@ -9,7 +9,7 @@ To begin, you will need to install the ruby library in your application. The lib
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'cpaas-ruby'
+gem 'cpaas-sdk'
 ```
 
 And then execute:
@@ -20,7 +20,7 @@ bundle
 
 Or install it yourself as:
 ```bash
-gem install cpaas-ruby
+gem install cpaas-sdk
 ```
 
 In your application, you simply need to create a new initializer `config/initializers/cpaas.rb`.

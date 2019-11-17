@@ -1,18 +1,17 @@
-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'cpaas/version'
+require 'cpaas-sdk/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'cpaas-ruby'
+  spec.name          = 'cpaas-sdk'
   spec.version       = Cpaas::VERSION
-  spec.authors       = ['Ashit Rath']
-  spec.email         = ['ashit@keepworks.com']
+  spec.authors       = ['Keepworks']
+  spec.email         = ['kandy@keepworks.com']
 
-  spec.summary       = %q{Kandy CPaaS Library}
-  spec.description   = %q{Build robust real-time communication applications.}
-  spec.homepage      = 'TODO: Homepage url'
-  spec.license       = 'MIT'
+  spec.summary       = %q{CPaaS Library}
+  spec.description   = %q{SDK to build robust real-time communication applications.}
+  spec.homepage      = 'https://github.com/Kandy-IO/kandy-cpaas-ruby-sdk'
+  spec.license       = 'SEE LICENSE IN LICENSE.md'
 
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

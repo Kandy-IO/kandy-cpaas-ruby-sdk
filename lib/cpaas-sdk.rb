@@ -1,7 +1,7 @@
-require 'cpaas/api'
-require 'cpaas/config'
-require 'cpaas/resources'
-require 'cpaas/version'
+require 'cpaas-sdk/api'
+require 'cpaas-sdk/config'
+require 'cpaas-sdk/resources'
+require 'cpaas-sdk/version'
 
 module Cpaas
   class << self

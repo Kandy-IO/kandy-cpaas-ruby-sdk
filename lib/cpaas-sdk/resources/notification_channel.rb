@@ -1,4 +1,4 @@
-require 'cpaas/util'
+require 'cpaas-sdk/util'
 
 module Cpaas
   # @private
