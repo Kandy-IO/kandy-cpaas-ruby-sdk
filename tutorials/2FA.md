@@ -39,7 +39,7 @@ The response contains `code_id` which is a unique ID needed for `verify_code`. T
 
 Walking through the method parameters:
 
-+ `destination_address` is required with a routable destination number in E.164 format, either with tel schema or not. For v1, only one address is supported.
++ `destination_address` is required with a routable destination number in E.164 format, either with tel schema or not. For SDK v1, only one address is supported.
 + `method` is mandatory and must have `sms` for verification via SMS flow.
 + `expiry` indicates the desired period of time in seconds that the code will be valid on $KANDY$. It is optional having default value as 120 seconds, while application can ask for values between 30 and 3600 seconds.
 + `message` is required with a `{code}` string within the text so that $KANDY$ can replace that with the real code generated, and send it as the SMS content.
@@ -95,7 +95,7 @@ The response contains `code_id` which is a unique ID needed for `verify_code`. T
   }
 ```
 
-As can be seen within the example, `method` parameter has `email` value, while `destination_address` field includes a destination e-mail address. For v1, only plain text is supported.
+As can be seen within the example, `method` parameter has `email` value, while `destination_address` field includes a destination e-mail address. For SDK v1, only plain text is supported.
 
 Verification procedure for two-factor authentication via e-mail is same with two-factor authentication via SMS as described in previous section.
 
