@@ -55,18 +55,21 @@ RSpec.describe Cpaas::Twofactor do
           destination_address: '123',
           message: 'test-message',
           type: 'alphanumeric',
-          expiry: 360
+          expiry: 360,
+          method: 'email',
+          subject: 'test'
         }
 
         expected_body = {
           code: {
             address: ['123'],
-            method: 'sms',
+            method: 'email',
             format: {
               length: 6,
               type: 'alphanumeric'
             },
             expiry: 360,
+            subject: 'test',
             message: 'test-message'
           }
         }.to_json
@@ -121,18 +124,21 @@ RSpec.describe Cpaas::Twofactor do
           destination_address: '123',
           message: 'test-message',
           type: 'alphanumeric',
-          expiry: 360
+          expiry: 360,
+          method: 'email',
+          subject: 'test'
         }
 
         expected_body = {
           code: {
             address: ['123'],
-            method: 'sms',
+            method: 'email',
             format: {
               length: 6,
               type: 'alphanumeric'
             },
             expiry: 360,
+            subject: 'test',
             message: 'test-message'
           }
         }.to_json

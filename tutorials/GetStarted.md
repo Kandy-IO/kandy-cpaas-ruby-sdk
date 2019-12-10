@@ -36,6 +36,15 @@ After you've configured the SDK client, you can begin playing around with it to 
 
 ## Configuration
 
+Before starting, you need to learn following information from your CPaaS account, specifically from Developer Portal.
+
+Log into your Developer Portal account and the configuration information required to be authenticated should be under:
+
++ `Projects` -> `{your project}` -> `Project info`/`Project secret`
+
+> + `Private Project key` should be mapped to `client_id`
+> + `Private Project secret` should be mapped to `client_secret`
+
 ```ruby
 Cpaas.configure do |config|
   config.client_id = '<private project key>'
@@ -44,16 +53,9 @@ Cpaas.configure do |config|
 end
 ```
 
-The information required to be authenticated should be under:
-
-+ `Projects` -> `{your project}` -> `Project info`/`Project secret`
-
-> + `Private Project key` should be mapped to `client_id`
-> + `Private Project secret` should be mapped to `client_secret`
-
 ## Usage
 
-All modules can be accessed via the client instance. All method invocations follow the namespaced signature
+All modules can be accessed via `Cpaas`, refer to [References](/developer/references/ruby) for details about all modules and it's methods. All method invocations follow the namespaced signature
 
 `{Client}::{ModuleName}.{method_name}(params)`
 
