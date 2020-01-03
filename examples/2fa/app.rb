@@ -45,26 +45,37 @@ class App < Sinatra::Application
       #
       # If an error is raised by send_code, it is caught in the catch block and the user is
       # redirected to the login page with the received error message as an alert.
-
-      response = Cpaas::Twofactor.send_code({
-        destination_address: ENV['PHONE_NUMBER'],
-        message: 'Your verification code: {code}'
-        })
-
-      if response[:exception_id]
-        # Here something went wrong either with the server or proper parameters were not passed.
-        # Received error message is echoed back to the UI as error alert.
-        return erb :login, layout: :index, locals: { alert: { message: error_message(response), type: 'error' } }
-      end
-
-      session[:code_id] = response[:code_id]
       set_credentials_verified(session)
-
       redirect '/verify'
     else
       # If login credentials do not match with credentials present in .env, login page is re-rendered with error alert
       erb :login, layout: :index, locals: { alert: { message: 'Invalid username or password', type: 'error' } }
     end
+  end
+
+  post '/sendtwofactor' do
+    method = params['otp']
+    if method == 'sms'
+      response = Cpaas::Twofactor.send_code({
+        destination_address: ENV['PHONE_NUMBER'],
+        message: 'Your verification code: {code}',
+        method: 'sms'
+      })
+    elsif method == 'email'
+      response = Cpaas::Twofactor.send_code({
+        destination_address: ENV['DESTINATION_EMAIL'],
+        message: 'Your verification code: {code}',
+        method: 'email',
+        subject: 'Twofactor verification'
+      })
+    end
+    if response[:exception_id]
+      # Here something went wrong either with the server or proper parameters were not passed.
+      # Received error message is echoed back to the UI as error alert.
+      return erb :verify, layout: :index, locals: { alert: { message: error_message(response), type: 'error' } }
+    end
+    session[:code_id] = response[:code_id]
+    erb :verify, layout: :index, locals: { alert: { message: 'Twofactor verification code sent successfully', type: 'success' } }
   end
 
   get '/verify' do
@@ -74,7 +85,7 @@ class App < Sinatra::Application
     return redirect '/logout' if !is_credentials_verified? session
 
     # If the login credentials are verified, user is shown code verification page.
-    erb :verify, layout: :index, locals: { alert: { message: "Verification code has been sent to #{ENV['PHONE_NUMBER']}", type: 'success' } }
+    erb :verify, layout: :index
   end
 
   post '/verify' do
