@@ -94,7 +94,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/cpaas/resources/twofactor.rb</dd>
+    <dd>lib/cpaas-sdk/resources/twofactor.rb</dd>
   </dl>
   
 </div>
@@ -103,9 +103,7 @@
   <div class="discussion">
     
 <p>CPaaS provides Authentication API where a two-factor authentication (2FA)
-flow can be implemented by using that. Sections below describe two sample
-use cases, two-factor authentication via SMS and two-factor authentication
-via e-mail</p>
+flow can be implemented by using that.</p>
 
 
   </div>
@@ -299,12 +297,12 @@ previously sent code.</p>
       <pre class="lines">
 
 
-126
-127
-128</pre>
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/twofactor.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/twofactor.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delete_code'>delete_code</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../Cpaas.html" title="Cpaas (module)">Cpaas</a></span></span><span class='period'>.</span><span class='id identifier rubyid_api'><span class='object_link'><a href="../Cpaas.html#api-class_method" title="Cpaas.api (method)">api</a></span></span><span class='period'>.</span><span class='id identifier rubyid_send_request'>send_request</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_base_url'>base_url</span><span class='embexpr_end'>}</span><span class='tstring_content'>/codes/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:code_id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='symbol'>:delete</span><span class='rparen'>)</span>
@@ -420,6 +418,21 @@ and email are supported types. Possible values: sms, email</p>
         </li>
       
         <li>
+          <span class="name">:subject</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p><code>optional</code> When the method is passed as email then subject
+becomes a mandatory field to pass. The value passed becomes the subject
+line of the 2FA code email that is sent out to the destination_address.</p>
+</div>
+          
+        </li>
+      
+        <li>
           <span class="name">:expiry</span>
           <span class="type">(<tt>Number</tt>)</span>
           <span class="default">
@@ -481,8 +494,6 @@ alphabetic</p>
       <pre class="lines">
 
 
-93
-94
 95
 96
 97
@@ -506,10 +517,13 @@ alphabetic</p>
 115
 116
 117
-118</pre>
+118
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/twofactor.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/twofactor.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_resend_code'>resend_code</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_address'>address</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:destination_address</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lbracket'>[</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:destination_address</span><span class='rbracket'>]</span> <span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:destination_address</span><span class='rbracket'>]</span>
@@ -524,6 +538,7 @@ alphabetic</p>
           <span class='label'>type:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>numeric</span><span class='tstring_end'>&#39;</span></span>
         <span class='rbrace'>}</span><span class='comma'>,</span>
         <span class='label'>expiry:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:expiry</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>120</span><span class='comma'>,</span>
+        <span class='label'>subject:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:subject</span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='label'>message:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:message</span><span class='rbracket'>]</span>
       <span class='rbrace'>}</span>
     <span class='rbrace'>}</span>
@@ -634,6 +649,21 @@ and email are supported types. Possible values: sms, email</p>
         </li>
       
         <li>
+          <span class="name">:subject</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p><code>optional</code> When the method is passed as email then subject
+becomes a mandatory field to pass. The value passed becomes the subject
+line of the 2FA code email that is sent out to the destination_address.</p>
+</div>
+          
+        </li>
+      
+        <li>
           <span class="name">:expiry</span>
           <span class="type">(<tt>Number</tt>)</span>
           <span class="default">
@@ -720,10 +750,11 @@ alphabetic</p>
 43
 44
 45
-46</pre>
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/twofactor.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/twofactor.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send_code'>send_code</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_address'>address</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:destination_address</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lbracket'>[</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:destination_address</span><span class='rbracket'>]</span> <span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:destination_address</span><span class='rbracket'>]</span>
@@ -738,6 +769,7 @@ alphabetic</p>
           <span class='label'>type:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>numeric</span><span class='tstring_end'>&#39;</span></span>
         <span class='rbrace'>}</span><span class='comma'>,</span>
         <span class='label'>expiry:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:expiry</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>120</span><span class='comma'>,</span>
+        <span class='label'>subject:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:subject</span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='label'>message:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:message</span><span class='rbracket'>]</span>
       <span class='rbrace'>}</span>
     <span class='rbrace'>}</span>
@@ -834,7 +866,6 @@ alphabetic</p>
       <pre class="lines">
 
 
-55
 56
 57
 58
@@ -858,10 +889,11 @@ alphabetic</p>
 76
 77
 78
-79</pre>
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/twofactor.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/twofactor.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_verify_code'>verify_code</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -898,7 +930,7 @@ alphabetic</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Oct 17 17:28:29 2019 by
+  Generated on Tue Apr  7 14:06:29 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.5.0).
 </div>

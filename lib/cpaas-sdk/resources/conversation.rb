@@ -10,10 +10,10 @@ module Cpaas
     # Send a new outbound message
     #
     # @param params [Hash]
-    # @option params [String] :type Type of conversation. Possible values - 'sms'. Check Conversation.types for more options
+    # @option params [String] :type Type of conversation. Possible value(s) - 'sms'. Check Conversation.types for more options
     # @option params [String] :sender_address Sender address information, basically the from address. E164 formatted DID number passed as a value, which is owned by the user. If the user wants to let CPaaS uses the default assigned DID number, this field can either has "default" value or the same value as the userId.
-    # @option params [Array[string]|String] :destination_address
-    # @option params [String] :message text message
+    # @option params [Array[string]|String] :destination_address Indicates which DID number(s) used as destination for this SMS.
+    # @option params [String] :message SMS text message
     #
     def self.create_message(params)
       if params[:type] == types[:SMS]
@@ -48,7 +48,7 @@ module Cpaas
     # Gets all messages.
     #
     # @param params [Hash]
-    # @option params [String] :type Type of conversation. Possible values - 'sms'. Check Conversation.types for more options
+    # @option params [String] :type Type of conversation. Possible value(s) - 'sms'. Check Conversation.types for more options
     # @option params [String] :remote_address +optional+ Remote address information while retrieving the conversation history, basically the destination telephone number that user exchanged message before. E164 formatted DID number passed as a value.
     # @option params [String] :local_address +optional+ Local address information while retrieving the conversation history, basically the source telephone number that user exchanged message before.
     # @option params [String] :query[:name] +optional+ - Performs search operation on firstName and lastName fields.
@@ -89,7 +89,7 @@ module Cpaas
     # Delete conversation message
     #
     # @param params [Hash]
-    # @option params [String] :type Type of conversation. Possible values - 'sms'. Check Conversation.types for more options
+    # @option params [String] :type Type of conversation. Possible value(s) - 'sms'. Check Conversation.types for more options
     # @option params [String] :remote_address Remote address information while retrieving the conversation history, basically the destination telephone number that user exchanged message before. E164 formatted DID number passed as a value.
     # @option params [String] :local_address Local address information while retrieving the conversation history, basically the source telephone number that user exchanged message before.
     # @option params [String] :message_id +optional+ Identification of the message. If messeageId is not passsed then the conversation thread is deleted with all messages.
@@ -108,7 +108,7 @@ module Cpaas
     # Read all messages in a thread
     #
     # @param params [Hash]
-    # @option params [String] :type Type of conversation. Possible values - 'sms'. Check Conversation.types for more options
+    # @option params [String] :type Type of conversation. Possible value(s) - 'sms'. Check Conversation.types for more options
     # @option params [String] :remote_address Remote address information while retrieving the conversation history, basically the destination telephone number that user exchanged message before. E164 formatted DID number passed as a value.
     # @option params [String] :local_address Local address information while retrieving the conversation history, basically the source telephone number that user exchanged message before.
     # @option params [String] :query[:next] +optional+ - Pointer for the next page to retrieve for the messages, provided by CPaaS in previous GET response.
@@ -135,7 +135,7 @@ module Cpaas
     # Read a conversation message status
     #
     # @param params [Hash]
-    # @option params [String] :type Type of conversation. Possible values - 'sms'. Check Conversation.types for more options
+    # @option params [String] :type Type of conversation. Possible value(s) - 'sms'. Check Conversation.types for more options
     # @option params [String] :remote_address Remote address information while retrieving the conversation history, basically the destination telephone number that user exchanged message before. E164 formatted DID number passed as a value.
     # @option params [String] :local_address Local address information while retrieving the conversation history, basically the source telephone number that user exchanged message before.
     # @option params [String] :message_id Identification of the message. If messeageId is not passsed then the conversation thread is deleted with all messages.
@@ -149,7 +149,7 @@ module Cpaas
     #
     # Read all active subscriptions
     #
-    # @option params [String] :type Type of conversation. Possible values - 'sms'. Check Conversation.types for more options
+    # @option params [String] :type Type of conversation. Possible value(s) - 'sms'. Check Conversation.types for more options
     #
 
     def self.get_subscriptions(params)
@@ -173,7 +173,7 @@ module Cpaas
     # Read active subscription
     #
     # @param params [Hash]
-    # @option params [String] :type Type of conversation. Possible values - 'sms'. Check Conversation.types for more options
+    # @option params [String] :type Type of conversation. Possible value(s) - 'sms'. Check Conversation.types for more options
     # @option params [String] :subscription_id Resource ID of the subscription
     #
     def self.get_subscription(params)
@@ -196,8 +196,8 @@ module Cpaas
     # Create a new subscription
     #
     # @param params [Hash]
-    # @option params [String] :type Type of conversation. Possible values - 'sms'. Check Conversation.types for more options
-    # @option params [String] :webhook_url The notification channel ID that has been acquired during /notificationchannel API subscription, either websockets, mobile push or webhooks type, which the incoming notifications supposed to be sent to.
+    # @option params [String] :type Type of conversation. Possible value(s) - 'sms'. Check Conversation.types for more options
+    # @option params [String] :webhook_url HTTPS URL that is present in your application server which is accessible from the public web where the notifications should be sent to. Note: Should be a POST endpoint.
     # @option params [String] :destination_address +optional+ The address that incoming messages are received for this subscription. If does not exist, CPaaS uses the default assigned DID number to subscribe against. It is suggested to provide the intended E164 formatted DID number within this parameter.
     #
 
@@ -235,6 +235,7 @@ module Cpaas
     # Unsubscription from conversation notification
     #
     # @param params [Hash]
+    # @option params [String] :type Type of conversation. Possible value(s) - 'sms'. Check Conversation.types for more options
     # @option params [String] :subscription_id Resource ID of the subscription.
     #
 

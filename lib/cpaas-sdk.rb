@@ -11,7 +11,7 @@ module Cpaas
   #
   # Configure the SDK with client_id and client_secret.
   #
-  # @param client_id [String] Private project secret
+  # @param client_id [String] Private project key
   # @param client_secret [String] Private project secret
   # @param base_url [String] JSON URL of the server to be used.
   #

@@ -9,7 +9,7 @@ module Cpaas
     # Parse inbound sms notification received in webhook. It parses the notification and returns
     # simplified version of the response.
     #
-    # @param notification [Hash] JSON received in the subscription webhook.
+    # @param notification [JSON] JSON received in the subscription webhook.
     #
     def self.parse(notification)
       parsed_notification = convert_hash_keys(notification)

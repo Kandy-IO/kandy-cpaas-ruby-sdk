@@ -49,7 +49,7 @@ Log into your Developer Portal account and the configuration information require
 Cpaas.configure do |config|
   config.client_id = '<private project key>'
   config.client_secret = '<private project secret>'
-  config.base_url = '$KANDYFQDN$'
+  config.base_url = 'https://$KANDYFQDN$'
 end
 ```
 

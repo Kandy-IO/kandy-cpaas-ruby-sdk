@@ -6,7 +6,7 @@ Instantiate the instance with client\_id & client\_secret.
 
 ### Parameters:
 
-* **client_id** (String) - Private project secret
+* **client_id** (String) - Private project key
 * **client_secret** (String) — Private project secret
 * **base_url** (String) — JSON URL of the server to be used
 

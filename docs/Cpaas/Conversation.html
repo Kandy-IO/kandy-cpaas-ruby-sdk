@@ -94,7 +94,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/cpaas/resources/conversation.rb</dd>
+    <dd>lib/cpaas-sdk/resources/conversation.rb</dd>
   </dl>
   
 </div>
@@ -398,7 +398,7 @@
           </span>
           
             &mdash; <div class='inline'>
-<p>Type of conversation. Possible values - &#39;sms&#39;. Check
+<p>Type of conversation. Possible value(s) - &#39;sms&#39;. Check
 Conversation.types for more options</p>
 </div>
           
@@ -427,6 +427,10 @@ let CPaaS uses the default assigned DID number, this field can either has
             
           </span>
           
+            &mdash; <div class='inline'>
+<p>Indicates which DID number(s) used as destination for this SMS.</p>
+</div>
+          
         </li>
       
         <li>
@@ -437,7 +441,7 @@ let CPaaS uses the default assigned DID number, this field can either has
           </span>
           
             &mdash; <div class='inline'>
-<p>text message</p>
+<p>SMS text message</p>
 </div>
           
         </li>
@@ -482,7 +486,7 @@ let CPaaS uses the default assigned DID number, this field can either has
 45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/conversation.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/conversation.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_message'>create_message</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='symbol'>:SMS</span><span class='rbracket'>]</span>
@@ -565,7 +569,7 @@ let CPaaS uses the default assigned DID number, this field can either has
           </span>
           
             &mdash; <div class='inline'>
-<p>Type of conversation. Possible values - &#39;sms&#39;. Check
+<p>Type of conversation. Possible value(s) - &#39;sms&#39;. Check
 Conversation.types for more options</p>
 </div>
           
@@ -635,7 +639,7 @@ passsed then the conversation thread is deleted with all messages.</p>
 105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/conversation.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/conversation.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delete_message'>delete_message</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='symbol'>:SMS</span><span class='rbracket'>]</span>
@@ -699,7 +703,7 @@ passsed then the conversation thread is deleted with all messages.</p>
           </span>
           
             &mdash; <div class='inline'>
-<p>Type of conversation. Possible values - &#39;sms&#39;. Check
+<p>Type of conversation. Possible value(s) - &#39;sms&#39;. Check
 Conversation.types for more options</p>
 </div>
           
@@ -898,7 +902,7 @@ gathered from the previous query results.</p>
 86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/conversation.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/conversation.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_messages'>get_messages</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='symbol'>:SMS</span><span class='rbracket'>]</span>
@@ -976,7 +980,7 @@ gathered from the previous query results.</p>
           </span>
           
             &mdash; <div class='inline'>
-<p>Type of conversation. Possible values - &#39;sms&#39;. Check
+<p>Type of conversation. Possible value(s) - &#39;sms&#39;. Check
 Conversation.types for more options</p>
 </div>
           
@@ -1092,7 +1096,7 @@ that are sent/received after provided Epoch time</p>
 132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/conversation.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/conversation.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_messages_in_thread'>get_messages_in_thread</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='symbol'>:SMS</span><span class='rbracket'>]</span>
@@ -1161,7 +1165,7 @@ that are sent/received after provided Epoch time</p>
           </span>
           
             &mdash; <div class='inline'>
-<p>Type of conversation. Possible values - &#39;sms&#39;. Check
+<p>Type of conversation. Possible value(s) - &#39;sms&#39;. Check
 Conversation.types for more options</p>
 </div>
           
@@ -1227,7 +1231,7 @@ conversation thread is deleted with all messages.</p>
 147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/conversation.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/conversation.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_status'>get_status</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='symbol'>:SMS</span><span class='rbracket'>]</span>
@@ -1287,7 +1291,7 @@ conversation thread is deleted with all messages.</p>
           </span>
           
             &mdash; <div class='inline'>
-<p>Type of conversation. Possible values - &#39;sms&#39;. Check
+<p>Type of conversation. Possible value(s) - &#39;sms&#39;. Check
 Conversation.types for more options</p>
 </div>
           
@@ -1333,7 +1337,7 @@ Conversation.types for more options</p>
 193</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/conversation.rb', line 179</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/conversation.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_subscription'>get_subscription</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='symbol'>:SMS</span><span class='rbracket'>]</span>
@@ -1408,7 +1412,7 @@ Conversation.types for more options</p>
           </span>
           
             &mdash; <div class='inline'>
-<p>Type of conversation. Possible values - &#39;sms&#39;. Check
+<p>Type of conversation. Possible value(s) - &#39;sms&#39;. Check
 Conversation.types for more options</p>
 </div>
           
@@ -1442,7 +1446,7 @@ Conversation.types for more options</p>
 170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/conversation.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/conversation.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_subscriptions'>get_subscriptions</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='symbol'>:SMS</span><span class='rbracket'>]</span>
@@ -1513,7 +1517,7 @@ Conversation.types for more options</p>
           </span>
           
             &mdash; <div class='inline'>
-<p>Type of conversation. Possible values - &#39;sms&#39;. Check
+<p>Type of conversation. Possible value(s) - &#39;sms&#39;. Check
 Conversation.types for more options</p>
 </div>
           
@@ -1527,9 +1531,9 @@ Conversation.types for more options</p>
           </span>
           
             &mdash; <div class='inline'>
-<p>The notification channel ID that has been acquired during
-/notificationchannel API subscription, either websockets, mobile push or
-webhooks type, which the incoming notifications supposed to be sent to.</p>
+<p>HTTPS URL that is present in your application server which is accessible
+from the public web where the notifications should be sent to. Note: Should
+be a POST endpoint.</p>
 </div>
           
         </li>
@@ -1591,7 +1595,7 @@ formatted DID number within this parameter.</p>
 232</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/conversation.rb', line 204</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/conversation.rb', line 204</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_subscribe'>subscribe</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='symbol'>:SMS</span><span class='rbracket'>]</span>
@@ -1670,6 +1674,20 @@ formatted DID number within this parameter.</p>
     <ul class="option">
       
         <li>
+          <span class="name">:type</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Type of conversation. Possible value(s) - &#39;sms&#39;. Check
+Conversation.types for more options</p>
+</div>
+          
+        </li>
+      
+        <li>
           <span class="name">:subscription_id</span>
           <span class="type">(<tt>String</tt>)</span>
           <span class="default">
@@ -1692,7 +1710,6 @@ formatted DID number within this parameter.</p>
       <pre class="lines">
 
 
-241
 242
 243
 244
@@ -1704,10 +1721,11 @@ formatted DID number within this parameter.</p>
 250
 251
 252
-253</pre>
+253
+254</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas/resources/conversation.rb', line 241</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk/resources/conversation.rb', line 242</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_unsubscribe'>unsubscribe</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='symbol'>:SMS</span><span class='rbracket'>]</span>
@@ -1732,7 +1750,7 @@ formatted DID number within this parameter.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Oct 17 17:28:29 2019 by
+  Generated on Tue Apr  7 14:06:29 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.5.0).
 </div>
