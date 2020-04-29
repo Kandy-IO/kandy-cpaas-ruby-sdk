@@ -22,26 +22,26 @@ def process_response(res, remove_outer_key = true)
   response
 end
 
-def compose_error_from(err_response)
-  error_obj = deep_find(err_response, :message_id)
+def compose_error_from(response)
+  error_obj = deep_find(response, :message_id)
 
   if (error_obj)
     message = error_obj[:text]
 
     error_obj[:variables].each_with_index { |variable, index| message.gsub!("%#{index + 1}", variable) }
 
-    response = {
+    return {
       name: error_obj[:name],
       exception_id: error_obj[:message_id],
       message: message
     }
-  else
-    response = {
-      name: err_response.keys.first,
-      exception_id: 'Unknown',
-      message: err_response[:message]
-    }
   end
+
+
+  {
+    name: response[:error] || response.keys.first,
+    message: response[:error_description] || response[:message]
+  }
 end
 
 def id_from (url)

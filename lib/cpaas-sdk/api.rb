@@ -12,12 +12,11 @@ module Cpaas
     attr_accessor :user_id, :client_correlator
 
     def initialize(config)
-      @client_id = config.client_id
-      @client_secret = config.client_secret
+      @config = config
       @id_token_parsed = nil
       @access_token = nil
-      self.user_id = nil
-      self.client_correlator = "#{config.client_id}-ruby"
+      @user_id = nil
+      @client_correlator = "#{config.client_id}-ruby"
 
       self.class.base_uri config.base_url
 
@@ -87,15 +86,28 @@ module Cpaas
     def get_auth_token
       options = {
         body: {
-          grant_type: 'client_credentials',
-          client_id: @client_id,
-          client_secret: @client_secret,
+          client_id: @config.client_id,
           scope: 'openid'
         },
         headers: {
           'Content-Type' => 'application/x-www-form-urlencoded'
         }
       }
+
+      if !@config.client_secret.nil?
+        credentials = {
+          grant_type: 'client_credentials',
+          client_secret: @config.client_secret
+        }
+      else
+        credentials = {
+          grant_type: 'password',
+          username: @config.email,
+          password: @config.password
+        }
+      end
+
+      options[:body].merge!(credentials)
 
       response = send_request('/cpaas/auth/v1/token', options, :post , false)
 
@@ -116,13 +128,13 @@ module Cpaas
         @access_token = nil
         @id_token = nil
         @id_token_parsed = nil
-        @self.user_id = nil
+        @user_id = nil
       else
         @access_token = tokens[:access_token]
         @id_token = tokens[:id_token]
         @id_token_parsed = JWT.decode(tokens[:id_token], nil, false).first
         @token_parsed = JWT.decode(tokens[:access_token], nil, false).first
-        self.user_id = @id_token_parsed['preferred_username']
+        @user_id = @id_token_parsed['preferred_username']
       end
     end
 

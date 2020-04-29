@@ -25,6 +25,8 @@ module Cpaas
   def self.configure
     yield self.config = Cpaas::Config.new
 
+    config.validate
+
     self.api = Cpaas::Api.new(config)
   end
 end

@@ -194,4 +194,48 @@ RSpec.describe Cpaas::Api do
       end
     end
   end
+
+  describe '#get_auth_token' do
+    context 'when called with project credentials' do
+      it 'generates valid body and url' do
+        config = Cpaas::Config.new
+        config.client_id = 'test-client-id'
+        config.client_secret = 'test-client-secret'
+        config.base_url = 'https://oauth-cpaas.att.com'
+
+        url = '/cpaas/auth/v1/token'
+
+        api = Cpaas::Api.new(config)
+        response = api.get_auth_token
+
+        expect(response[:__for_test__][:body]).to include('grant_type=client_credentials')
+        expect(response[:__for_test__][:body]).to include('scope=openid')
+        expect(response[:__for_test__][:body]).to include("client_id=#{config.client_id}")
+        expect(response[:__for_test__][:body]).to include("client_secret=#{config.client_secret}")
+        expect(response[:__for_test__][:url]).to eq(url)
+      end
+    end
+
+    context 'when called with account credentials' do
+      it 'generates valid body and url' do
+        config = Cpaas::Config.new
+        config.client_id = 'test-client-id'
+        config.email = 'user@test.com'
+        config.password = 'password'
+        config.base_url = 'https://oauth-cpaas.att.com'
+
+        url = '/cpaas/auth/v1/token'
+
+        api = Cpaas::Api.new(config)
+        response = api.get_auth_token
+
+        expect(response[:__for_test__][:body]).to include('grant_type=password')
+        expect(response[:__for_test__][:body]).to include('scope=openid')
+        expect(response[:__for_test__][:body]).to include("client_id=#{config.client_id}")
+        expect(response[:__for_test__][:body]).to include("username=#{CGI.escape(config.email)}")
+        expect(response[:__for_test__][:body]).to include("password=#{config.password}")
+        expect(response[:__for_test__][:url]).to eq(url)
+      end
+    end
+  end
 end
