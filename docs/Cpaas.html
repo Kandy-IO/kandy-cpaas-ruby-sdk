@@ -332,11 +332,20 @@
     <p class="tag_title">Examples:</p>
     
       
-      <pre class="example code"><code>Cpaas.configure do |config|
-  config.client_id: &#39;&lt;private project key&gt;&#39;,
-  config.client_secret: &#39;&lt;private project secret&gt;&#39;,
-  config.base_url: &#39;&lt;base url&gt;&#39;
-end</code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Cpaas (module)">Cpaas</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_config'>config</span><span class='op'>|</span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_client_id'>client_id</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;private project key&gt;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_client_secret'>client_secret</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;private project secret&gt;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_base_url'>base_url</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://$KANDYFQDN$</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># or
+</span>
+<span class='const'><span class='object_link'><a href="" title="Cpaas (module)">Cpaas</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_config'>config</span><span class='op'>|</span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_client_id'>client_id</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;account client ID&gt;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;account email&gt;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_password'>password</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;account password&gt;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_base_url'>base_url</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://$KANDYFQDN$</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -353,23 +362,9 @@ end</code></pre>
       
         &mdash;
         <div class='inline'>
-<p>Private project key</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>client_secret</span>
-      
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Private project secret</p>
+<p>Private project key / Account client ID. If Private project key is used
+then client_secret is mandatory. If account client ID is used then email
+and password are mandatory.</p>
 </div>
       
     </li>
@@ -385,7 +380,55 @@ end</code></pre>
       
         &mdash;
         <div class='inline'>
-<p>JSON URL of the server to be used.</p>
+<p>URL of the server to be used.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_secret</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>+optional Private project secret</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>email</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>+optional Account login email</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>+optional Account login password</p>
 </div>
       
     </li>
@@ -412,17 +455,21 @@ end</code></pre>
       <pre class="lines">
 
 
-25
-26
-27
-28
-29</pre>
+36
+37
+38
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/cpaas-sdk.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span>
   <span class='kw'>yield</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Cpaas (module)">Cpaas</a></span></span><span class='op'>::</span><span class='const'>Config</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span>
 
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_api'>api</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Cpaas (module)">Cpaas</a></span></span><span class='op'>::</span><span class='const'>Api</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -436,7 +483,7 @@ end</code></pre>
 </div>
 
       <div id="footer">
-  Generated on Tue Apr  7 14:06:29 2020 by
+  Generated on Wed May  6 19:02:40 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.5.0).
 </div>
